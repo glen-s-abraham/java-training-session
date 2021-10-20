@@ -14,5 +14,6 @@ public class ArithmeticExec {
 		System.out.println("Diff: " + arithmetic.sub(a, b));
 		System.out.println("Prod: " + arithmetic.mul(a, b));
 		System.out.println("Quot: " + arithmetic.div(a, b));
+		System.out.println((double)3/5);
 	}
 }

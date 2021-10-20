@@ -1,7 +1,7 @@
 
 public class ArrayOps {
 	public static void main(String[] args) {
-		int array[]= {22,10,3,21,6};
+		int array[]= {22,23,23,25,30,10,3,21,6};
 		Array arrOps = new Array();
 		
 		//Sorting Ascending
@@ -27,7 +27,11 @@ public class ArrayOps {
 		System.out.println(arrOps.min(array));
 		
 		//Second largest when no duplicates elements are present
-	
-		System.out.println("Second largest "+arrOps.sort(array,"desc")[1]);			
+		for(int num:arrOps.sort(array,"desc"))
+			if(num!=arrOps.max(array)) {
+				System.out.println("Second largest "+num);
+				break;
+			}
+
 	}
 }
