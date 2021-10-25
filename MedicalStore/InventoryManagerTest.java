@@ -8,24 +8,9 @@ class InventoryManagerTest {
 	InventoryManager inventoryManager;
 	@BeforeEach
 	void setUp() {
-		Inventory inventory = new Inventory();
-		inventoryManager = new InventoryManager(inventory);
+		inventoryManager = new InventoryManager();
 	}
-	@ParameterizedTest
-	@CsvSource({"1,paracetamol,10,100"})
-	void shouldReturnMedecineWhenPassedInCorrectParameters(int id, String name,
-			double price, int qty) {
-		
-		Medecine expected = new Medecine(id,name,price,qty); 
-		Medecine result = inventoryManager.createNewMedecine(id, name, price, qty);
-		
-		assertAll(
-				()->assertEquals(expected.getMedecineId(),result.getMedecineId()),
-				()->assertEquals(expected.getMedecinePrice(),result.getMedecinePrice()),
-				()->assertEquals(expected.getMedecineName(),result.getMedecineName()),
-				()->assertEquals(expected.getMedecineStockQty(),result.getMedecineStockQty())	
-		);
-	}
+	
 	@ParameterizedTest
 	@CsvSource({"1,paracetamol,10,100"})
 	void shouldReturnTrueWhenPassedInCorrectParameters(int id, String name,

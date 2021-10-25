@@ -3,27 +3,22 @@ import java.util.List;
 
 public class BillManager{
 	private List <Bill> billItems = new ArrayList<Bill>();
-	private InventoryManager inventory;
-	public BillManager() {
-		this.inventory = new InventoryManager();
-	}
-	public BillManager(InventoryManager inventory) {
-		this.inventory =inventory;
-	}
+	
+	
 	//Accepts id,qty to add medecine to bill
-	public boolean addMedecineToBill(int id,int qty) {
-		try {
-			
-			inventory.findMedecineByIdandUpdateQty(id,
-					inventory.getMedecineById(id).getMedecineStockQty()-qty
-			);
-			
-			billItems.add(new Bill(inventory.getMedecineById(id),qty));
-			
+	public boolean addMedecineToBill(Medecine medecine,int qty) {	
+			if(qty<=0) throw new IllegalArgumentException("ivalid property value");
+			billItems.add(new Bill(medecine,qty));
 			return true;
-		}catch(Exception exception) {
-			return false;
-		}
+	}
+	
+	public boolean deleteMedecineFromBill(int id) {
+		for(Bill bill:billItems)
+			if(bill.getMedecine().getMedecineId()==id) {
+				billItems.remove(bill);
+				return true;
+			}
+		return false;
 	}
 	
 	//Print Bill

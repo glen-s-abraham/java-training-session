@@ -16,37 +16,46 @@ import org.junit.runners.Parameterized.Parameter;
 
 class BillManagerTest {
 	private BillManager billManager;
-	InventoryManager inventoryManager;
 	@BeforeEach
 	void setUp() {
-		Inventory inventory = new Inventory();
-		for(int i=1;i<=5;i++) {
-			inventory.setMedecines(new Medecine(i,"Name"+i,10*i,i*100));
-		}
-		InventoryManager imanager = new InventoryManager(inventory);
-		this.billManager=new BillManager(imanager);
+		this.billManager=new BillManager();
 	}
 	@Test
-	void shouldReturnTrueWhenGivenCorrectIdAndQty() {
-		assertTrue(billManager.addMedecineToBill(1, 11));
-	}
-	@Test
-	void shouldThrowFalseWhenGivenCorrectIdAndIncorrectQty() {
-		assertFalse(billManager.addMedecineToBill(1, 200));
-	}
-	@Test
-	void shouldReturnFalseWhenGivenIncorrectId() {
-		assertFalse(billManager.addMedecineToBill(69, 20));
+	void shouldReturnTrueWhenGivenCorrectMedecineAndQty() {
+		Medecine medecine=new Medecine(1,"Paracetamol",10,100);
+		assertTrue(billManager.addMedecineToBill(medecine, 11));
 	}
 	
 	@Test
+	void shouldTrowExceptionWhenGivenCorrectMedecineAndIcorrectQty() {
+		Medecine medecine=new Medecine(1,"Paracetamol",10,100);
+		assertThrows(IllegalArgumentException.class,
+				()->billManager.addMedecineToBill(medecine, 0));
+	}
+	
+	@Test
+	void shouldReturnTrueWhenGivenCorrectIdToDelete() {
+		Medecine medecine=new Medecine(1,"Paracetamol",10,100);
+		billManager.addMedecineToBill(medecine, 1);
+		assertTrue(billManager.deleteMedecineFromBill(1));
+	}
+	
+	@Test
+	void shouldReturnFalseWhenGivenIncorrectIdToDelete() {
+		Medecine medecine=new Medecine(1,"Paracetamol",10,100);
+		billManager.addMedecineToBill(medecine, 1);
+		assertFalse(billManager.deleteMedecineFromBill(2));
+	}
+
+	@Test
 	void shouldReturnBillListWhenGivenCorrectBills() {
-			int id=1,qty=1;
-			billManager.addMedecineToBill(id,qty);
+			Medecine medecine=new Medecine(1,"Paracetamol",10,100);
+			int qty=1;
+			billManager.addMedecineToBill(medecine,qty);
 			List <Bill> result = billManager.printBill();
 			for(Bill bill:result) {
 				assertEquals(bill.getPurchaseQty(),qty);
-				assertEquals(bill.getMedecine().getMedecineId(),id);
+				assertEquals(bill.getMedecine().getMedecineId(),medecine.getMedecineId());
 				assertEquals(bill.getTotalBillAmount(),bill.getMedecine().getMedecinePrice()*qty,0.00);
 			}
 			

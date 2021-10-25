@@ -6,19 +6,12 @@ public class InventoryManager {
 	public InventoryManager() {
 		this.inventory = new Inventory();
 	}
-	public InventoryManager(Inventory inventory) {
-		this.inventory = inventory;
-	}
 	
-	//Accepts necessary parameters and create a medecine object and returns it
-	public Medecine createNewMedecine(int id,String name,double price, int qty) {
-		return new Medecine(id,name,price,qty);
-	}
 	
 	//Create a new inventory entry
 	public boolean addNewMedecineToInventory(int id,String name,double price, int qty) {
 		try {
-			inventory.setMedecines(createNewMedecine(id,name,price,qty));
+			inventory.setMedecines(new Medecine(id,name,price,qty));
 			return true;
 		}catch(Exception ecxeption) {
 			return false;
