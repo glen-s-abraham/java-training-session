@@ -10,6 +10,7 @@
 	<classpathentry kind="src" path="MedicalStore"/>
 	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="src" path="FileHandling"/>
+	<classpathentry kind="src" path="MultiThreading"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
