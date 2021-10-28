@@ -3,9 +3,8 @@ class Odd implements Runnable{
 		for(int i = 1;i<10;i+=2) {
 			System.out.println(i);
 			try {
-				Thread.sleep(800);
+				Thread.sleep(3);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -17,9 +16,8 @@ class Even implements Runnable{
 		for(int i = 0;i<10;i+=2) {
 			System.out.println(i);
 			try {
-				Thread.sleep(500);
+				Thread.sleep(2);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
