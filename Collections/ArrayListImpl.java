@@ -9,8 +9,14 @@ public class ArrayListImpl {
 		integerList.add(20);
 		integerList.add(30);
 		integerList.add(10);
-		for(Integer number:integerList)
-			System.out.println(number);
+		System.out.println(integerList);
+		System.out.println(integerList.contains(10));
+		integerList.set(0, 25);
+		System.out.println(integerList.get(0));
+		integerList.remove(Integer.valueOf(10));
+		System.out.println(integerList.contains(10));
+		integerList.clear();
+		System.out.println(integerList);
 
 	}
 
